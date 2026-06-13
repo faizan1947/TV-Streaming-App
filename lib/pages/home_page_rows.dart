@@ -1,374 +1,139 @@
 import 'package:flutter/material.dart';
 
-class IslamicChannels extends StatelessWidget {
-  Card channelBox(
-    Image image,
-  ) {
-    return Card(
-      clipBehavior: Clip.antiAlias, //very important
-      shape: RoundedRectangleBorder(
-        borderRadius: BorderRadius.circular(60.0),
-      ),
-      child: Container(
-        width: 75,
-        child: image,
-      ),
-    );
-  }
+class _ChannelItem extends StatelessWidget {
+  final String assetPath;
+  final String label;
+  final String route;
+
+  const _ChannelItem({Key key, this.assetPath, this.label, this.route})
+      : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    return Row(
-      mainAxisAlignment: MainAxisAlignment.start,
-      children: [
-        GestureDetector(
-            onTap: () {
-              Navigator.pushNamed(context, '/madni');
-            },
-            child: channelBox(Image.asset(
-              'assets/madni.jpg',
-              fit: BoxFit.cover,
-            ))),
-        GestureDetector(
-            onTap: () {
-              Navigator.pushNamed(context, '/makkah');
-            },
-            child: channelBox(
-                Image.asset('assets/makkah.jpg', fit: BoxFit.cover))),
-        GestureDetector(
-            onTap: () {
-              Navigator.pushNamed(context, '/madina');
-            },
-            child: channelBox(
-                Image.asset('assets/madinah.jpg', fit: BoxFit.cover))),
-      ],
+    return GestureDetector(
+      onTap: () => Navigator.pushNamed(context, route),
+      child: Container(
+        width: 82,
+        margin: const EdgeInsets.symmetric(horizontal: 6, vertical: 4),
+        child: Column(
+          mainAxisSize: MainAxisSize.min,
+          children: [
+            Container(
+              width: 72,
+              height: 72,
+              decoration: BoxDecoration(
+                shape: BoxShape.circle,
+                border: Border.all(
+                  color: const Color(0xFF00BCD4),
+                  width: 1.5,
+                ),
+                boxShadow: [
+                  BoxShadow(
+                    color: Colors.black.withOpacity(0.5),
+                    blurRadius: 10,
+                    offset: Offset(0, 4),
+                  ),
+                ],
+              ),
+              child: ClipOval(
+                child: Image.asset(
+                  assetPath,
+                  fit: BoxFit.cover,
+                ),
+              ),
+            ),
+            const SizedBox(height: 6),
+            Text(
+              label,
+              style: TextStyle(
+                color: Colors.white70,
+                fontSize: 10,
+                fontWeight: FontWeight.w500,
+                letterSpacing: 0.2,
+              ),
+              textAlign: TextAlign.center,
+              maxLines: 1,
+              overflow: TextOverflow.ellipsis,
+            ),
+          ],
+        ),
+      ),
     );
   }
 }
 
-class NewsChannels extends StatelessWidget {
-  Card channelBox(
-    Image image,
-  ) {
-    return Card(
-      clipBehavior: Clip.antiAlias, //very important
-      shape: RoundedRectangleBorder(
-        borderRadius: BorderRadius.circular(60.0),
-      ),
-      child: Container(
-        width: 75,
-        child: image,
-      ),
-    );
-  }
-
+class IslamicChannels extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    return SingleChildScrollView(
-      scrollDirection: Axis.horizontal,
+    return Padding(
+      padding: const EdgeInsets.symmetric(horizontal: 8),
       child: Row(
         children: [
-          GestureDetector(
-            onTap: () {
-              Navigator.pushNamed(context, '/samaa');
-            },
-            child: channelBox(
-              Image.asset('assets/samaa.jpg', fit: BoxFit.cover),
-            ),
-          ),
-          GestureDetector(
-            onTap: () {
-              Navigator.pushNamed(context, '/express');
-            },
-            child: channelBox(
-              Image.asset('assets/express.jpg', fit: BoxFit.cover),
-            ),
-          ),
-          GestureDetector(
-            onTap: () {
-              Navigator.pushNamed(context, '/bol');
-            },
-            child: channelBox(
-              Image.asset('assets/bol.jpg', fit: BoxFit.cover),
-            ),
-          ),
-          GestureDetector(
-            onTap: () {
-              Navigator.pushNamed(context, '/humnews');
-            },
-            child: channelBox(
-              Image.asset('assets/humnews.jpg', fit: BoxFit.cover),
-            ),
-          ),
-          GestureDetector(
-            onTap: () {
-              Navigator.pushNamed(context, '/newsone');
-            },
-            child: channelBox(
-              Image.asset('assets/newsone.jpg', fit: BoxFit.cover),
-            ),
-          ),
-          GestureDetector(
-            onTap: () {
-              Navigator.pushNamed(context, '/publicnews');
-            },
-            child: channelBox(
-              Image.asset('assets/publicnews.jpg', fit: BoxFit.cover),
-            ),
-          ),
-          GestureDetector(
-            onTap: () {
-              Navigator.pushNamed(context, '/dawn');
-            },
-            child: channelBox(
-              Image.asset('assets/dawn.jpg', fit: BoxFit.cover),
-            ),
-          ),
-          GestureDetector(
-            onTap: () {
-              Navigator.pushNamed(context, '/abbtakk');
-            },
-            child: channelBox(
-              Image.asset('assets/abbtakk.jpg', fit: BoxFit.cover),
-            ),
-          ),
-          GestureDetector(
-            onTap: () {
-              Navigator.pushNamed(context, '/neo');
-            },
-            child: channelBox(
-              Image.asset('assets/neo.jpg', fit: BoxFit.cover),
-            ),
-          ),
-          GestureDetector(
-            onTap: () {
-              Navigator.pushNamed(context, '/geo');
-            },
-            child: channelBox(
-              Image.asset('assets/geo.jpg', fit: BoxFit.cover),
-            ),
-          ),
-          GestureDetector(
-            onTap: () {
-              Navigator.pushNamed(context, '/cnn');
-            },
-            child: channelBox(
-              Image.asset('assets/cnn.jpg', fit: BoxFit.cover),
-            ),
-          ),
-          GestureDetector(
-            onTap: () {
-              Navigator.pushNamed(context, '/dunya');
-            },
-            child: channelBox(
-              Image.asset('assets/dunya.jpg', fit: BoxFit.cover),
-            ),
-          ),
-          GestureDetector(
-            onTap: () {
-              Navigator.pushNamed(context, '/aajnews');
-            },
-            child: channelBox(
-              Image.asset('assets/aaj.jpg', fit: BoxFit.cover),
-            ),
-          ),
-          GestureDetector(
-            onTap: () {
-              Navigator.pushNamed(context, '/gnn');
-            },
-            child: channelBox(
-              Image.asset('assets/gnn.jpg', fit: BoxFit.cover),
-            ),
-          ),
-          GestureDetector(
-            onTap: () {
-              Navigator.pushNamed(context, '/rohi');
-            },
-            child: channelBox(
-              Image.asset('assets/rohi.jpg', fit: BoxFit.cover),
-            ),
-          ),
-          GestureDetector(
-            onTap: () {
-              Navigator.pushNamed(context, '/city41');
-            },
-            child: channelBox(
-              Image.asset('assets/city41.jpg', fit: BoxFit.cover),
-            ),
-          ),
-          GestureDetector(
-            onTap: () {
-              Navigator.pushNamed(context, '/city42');
-            },
-            child: channelBox(
-              Image.asset('assets/city42.jpg', fit: BoxFit.cover),
-            ),
-          ),
-          GestureDetector(
-            onTap: () {
-              Navigator.pushNamed(context, '/dw');
-            },
-            child: channelBox(
-              Image.asset('assets/dw.jpg', fit: BoxFit.cover),
-            ),
-          ),
+          _ChannelItem(assetPath: 'assets/madni.jpg', label: 'Madni TV', route: '/madni'),
+          _ChannelItem(assetPath: 'assets/makkah.jpg', label: 'Makkah TV', route: '/makkah'),
+          _ChannelItem(assetPath: 'assets/madinah.jpg', label: 'Madinah', route: '/madina'),
         ],
       ),
     );
   }
 }
 
-
-class EntertainmentChannels extends StatelessWidget {
-  Card channelBox(
-      Image image,
-      ) {
-    return Card(
-      clipBehavior: Clip.antiAlias, //very important
-      shape: RoundedRectangleBorder(
-        borderRadius: BorderRadius.circular(60.0),
-      ),
-      child: Container(
-        width: 75,
-        child: image,
-      ),
-    );
-  }
+class NewsChannels extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return SingleChildScrollView(
       scrollDirection: Axis.horizontal,
+      padding: const EdgeInsets.symmetric(horizontal: 8),
       child: Row(
         children: [
-          GestureDetector(
-            onTap: () {
-              Navigator.pushNamed(context, '/hum');
-            },
-            child: channelBox(
-              Image.asset('assets/humtv.jpg', fit: BoxFit.cover),
-            ),
-          ),
-          GestureDetector(
-            onTap: () {
-              Navigator.pushNamed(context, '/aplus');
-            },
-            child: channelBox(
-              Image.asset('assets/aplus.jpg', fit: BoxFit.cover),
-            ),
-          ),
-          GestureDetector(
-            onTap: () {
-              Navigator.pushNamed(context, '/geoent');
-            },
-            child: channelBox(
-              Image.asset('assets/geotv.jpg', fit: BoxFit.cover),
-            ),
-          ),
-          GestureDetector(
-            onTap: () {
-              Navigator.pushNamed(context, '/ptvhome');
-            },
-            child: channelBox(
-              Image.asset('assets/ptvhome.jpg', fit: BoxFit.cover),
-            ),
-          ),
-          GestureDetector(
-            onTap: () {
-              Navigator.pushNamed(context, '/humsitary');
-            },
-            child: channelBox(
-              Image.asset('assets/humsitary.jpg', fit: BoxFit.cover),
-            ),
-          ),
-          GestureDetector(
-            onTap: () {
-              Navigator.pushNamed(context, '/hummasala');
-            },
-            child: channelBox(
-              Image.asset('assets/hummasala.jpg', fit: BoxFit.cover),
-            ),
-          ),
-          GestureDetector(
-            onTap: () {
-              Navigator.pushNamed(context, '/expressent');
-            },
-            child: channelBox(
-              Image.asset('assets/expresstv.jpg', fit: BoxFit.cover),
-            ),
-          ),
-          GestureDetector(
-            onTap: () {
-              Navigator.pushNamed(context, '/urdu1');
-            },
-            child: channelBox(
-              Image.asset('assets/urduone.jpg', fit: BoxFit.cover),
-            ),
-          ),
-          GestureDetector(
-            onTap: () {
-              Navigator.pushNamed(context, '/aajtv');
-            },
-            child: channelBox(
-              Image.asset('assets/aajtv.jpg', fit: BoxFit.cover),
-            ),
-          ),
-          GestureDetector(
-            onTap: () {
-              Navigator.pushNamed(context, '/apnachannel');
-            },
-            child: channelBox(
-              Image.asset('assets/apnachannel.jpg', fit: BoxFit.cover),
-            ),
-          ),
-          GestureDetector(
-            onTap: () {
-              Navigator.pushNamed(context, '/boltv');
-            },
-            child: channelBox(
-              Image.asset('assets/boltv.jpg', fit: BoxFit.cover),
-            ),
-          ),
-          GestureDetector(
-            onTap: () {
-              Navigator.pushNamed(context, '/tvone');
-            },
-            child: channelBox(
-              Image.asset('assets/tvone.jpg', fit: BoxFit.cover),
-            ),
-          ),
-          GestureDetector(
-            onTap: () {
-              Navigator.pushNamed(context, '/play');
-            },
-            child: channelBox(
-              Image.asset('assets/play.jpg', fit: BoxFit.cover),
-            ),
-          ),
-          GestureDetector(
-            onTap: () {
-              Navigator.pushNamed(context, '/seetv');
-            },
-            child: channelBox(
-              Image.asset('assets/seetv.jpg', fit: BoxFit.cover),
-            ),
-          ),
-          GestureDetector(
-            onTap: () {
-              Navigator.pushNamed(context, '/ltn');
-            },
-            child: channelBox(
-              Image.asset('assets/ltn.jpg', fit: BoxFit.cover),
-            ),
-          ),
-          GestureDetector(
-            onTap: () {
-              Navigator.pushNamed(context, '/discovery');
-            },
-            child: channelBox(
-              Image.asset('assets/discovery.jpg', fit: BoxFit.cover),
-            ),
-          ),
+          _ChannelItem(assetPath: 'assets/samaa.jpg', label: 'Samaa', route: '/samaa'),
+          _ChannelItem(assetPath: 'assets/express.jpg', label: 'Express', route: '/express'),
+          _ChannelItem(assetPath: 'assets/bol.jpg', label: 'BOL News', route: '/bol'),
+          _ChannelItem(assetPath: 'assets/humnews.jpg', label: 'Hum News', route: '/humnews'),
+          _ChannelItem(assetPath: 'assets/newsone.jpg', label: 'News One', route: '/newsone'),
+          _ChannelItem(assetPath: 'assets/publicnews.jpg', label: 'Public News', route: '/publicnews'),
+          _ChannelItem(assetPath: 'assets/dawn.jpg', label: 'Dawn News', route: '/dawn'),
+          _ChannelItem(assetPath: 'assets/abbtakk.jpg', label: 'Abb Takk', route: '/abbtakk'),
+          _ChannelItem(assetPath: 'assets/neo.jpg', label: 'Neo News', route: '/neo'),
+          _ChannelItem(assetPath: 'assets/geo.jpg', label: 'Geo News', route: '/geo'),
+          _ChannelItem(assetPath: 'assets/cnn.jpg', label: 'CNN', route: '/cnn'),
+          _ChannelItem(assetPath: 'assets/dunya.jpg', label: 'Dunya', route: '/dunya'),
+          _ChannelItem(assetPath: 'assets/aaj.jpg', label: 'Aaj News', route: '/aajnews'),
+          _ChannelItem(assetPath: 'assets/gnn.jpg', label: 'GNN', route: '/gnn'),
+          _ChannelItem(assetPath: 'assets/rohi.jpg', label: 'Rohi TV', route: '/rohi'),
+          _ChannelItem(assetPath: 'assets/city41.jpg', label: 'City 41', route: '/city41'),
+          _ChannelItem(assetPath: 'assets/city42.jpg', label: 'City 42', route: '/city42'),
+          _ChannelItem(assetPath: 'assets/dw.jpg', label: 'DW', route: '/dw'),
+        ],
+      ),
+    );
+  }
+}
 
+class EntertainmentChannels extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return SingleChildScrollView(
+      scrollDirection: Axis.horizontal,
+      padding: const EdgeInsets.symmetric(horizontal: 8),
+      child: Row(
+        children: [
+          _ChannelItem(assetPath: 'assets/humtv.jpg', label: 'Hum TV', route: '/hum'),
+          _ChannelItem(assetPath: 'assets/aplus.jpg', label: 'A Plus', route: '/aplus'),
+          _ChannelItem(assetPath: 'assets/geotv.jpg', label: 'Geo TV', route: '/geoent'),
+          _ChannelItem(assetPath: 'assets/ptvhome.jpg', label: 'PTV Home', route: '/ptvhome'),
+          _ChannelItem(assetPath: 'assets/humsitary.jpg', label: 'Hum Sitary', route: '/humsitary'),
+          _ChannelItem(assetPath: 'assets/hummasala.jpg', label: 'Hum Masala', route: '/hummasala'),
+          _ChannelItem(assetPath: 'assets/expresstv.jpg', label: 'Express Ent', route: '/expressent'),
+          _ChannelItem(assetPath: 'assets/urduone.jpg', label: 'Urdu 1', route: '/urdu1'),
+          _ChannelItem(assetPath: 'assets/aajtv.jpg', label: 'Aaj TV', route: '/aajtv'),
+          _ChannelItem(assetPath: 'assets/apnachannel.jpg', label: 'Apna Channel', route: '/apnachannel'),
+          _ChannelItem(assetPath: 'assets/boltv.jpg', label: 'BOL TV', route: '/boltv'),
+          _ChannelItem(assetPath: 'assets/tvone.jpg', label: 'TV One', route: '/tvone'),
+          _ChannelItem(assetPath: 'assets/play.jpg', label: 'Play TV', route: '/play'),
+          _ChannelItem(assetPath: 'assets/seetv.jpg', label: 'See TV', route: '/seetv'),
+          _ChannelItem(assetPath: 'assets/ltn.jpg', label: 'LTN', route: '/ltn'),
+          _ChannelItem(assetPath: 'assets/discovery.jpg', label: 'Discovery', route: '/discovery'),
         ],
       ),
     );
@@ -376,138 +141,48 @@ class EntertainmentChannels extends StatelessWidget {
 }
 
 class KidsChannels extends StatelessWidget {
-  Card channelBox(
-      Image image,
-      ) {
-    return Card(
-      clipBehavior: Clip.antiAlias, //very important
-      shape: RoundedRectangleBorder(
-        borderRadius: BorderRadius.circular(60.0),
-      ),
-      child: Container(
-        width: 75,
-        child: image,
+  @override
+  Widget build(BuildContext context) {
+    return Padding(
+      padding: const EdgeInsets.symmetric(horizontal: 8),
+      child: Row(
+        children: [
+          _ChannelItem(assetPath: 'assets/cn.jpg', label: 'Cartoon Network', route: '/cn'),
+          _ChannelItem(assetPath: 'assets/championtv.jpg', label: 'Champion TV', route: '/championtv'),
+          _ChannelItem(assetPath: 'assets/discoverykids.jpg', label: 'Discovery Kids', route: '/discoverykids'),
+        ],
       ),
     );
   }
+}
 
+class MoviesChannels extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    return Row(
-      mainAxisAlignment: MainAxisAlignment.start,
-      children: [
-        GestureDetector(
-            onTap: () {
-              Navigator.pushNamed(context, '/cn');
-            },
-            child: channelBox(Image.asset(
-              'assets/cn.jpg',
-              fit: BoxFit.cover,
-            ))),
-        GestureDetector(
-            onTap: () {
-              Navigator.pushNamed(context, '/championtv');
-            },
-            child: channelBox(
-                Image.asset('assets/championtv.jpg', fit: BoxFit.cover))),
-        GestureDetector(
-            onTap: () {
-              Navigator.pushNamed(context, '/discoverykids');
-            },
-            child: channelBox(
-                Image.asset('assets/discoverykids.jpg', fit: BoxFit.cover))),
-      ],
+    return Padding(
+      padding: const EdgeInsets.symmetric(horizontal: 8),
+      child: Row(
+        children: [
+          _ChannelItem(assetPath: 'assets/filmax.jpg', label: 'Fil Max', route: '/filmax'),
+          _ChannelItem(assetPath: 'assets/filmworld.jpg', label: 'Film World', route: '/filmworld'),
+          _ChannelItem(assetPath: 'assets/movieone.jpg', label: 'Movie One', route: '/movieone'),
+        ],
+      ),
     );
   }
 }
 
 class MusicChannels extends StatelessWidget {
-  Card channelBox(
-      Image image,
-      ) {
-    return Card(
-      clipBehavior: Clip.antiAlias, //very important
-      shape: RoundedRectangleBorder(
-        borderRadius: BorderRadius.circular(60.0),
-      ),
-      child: Container(
-        width: 75,
-        child: image,
-      ),
-    );
-  }
-
   @override
   Widget build(BuildContext context) {
-    return Row(
-      mainAxisAlignment: MainAxisAlignment.start,
-      children: [
-        GestureDetector(
-          onTap: () {
-            Navigator.pushNamed(context, '/8xm');
-          },
-          child: channelBox(
-            Image.asset('assets/8xm.jpg', fit: BoxFit.cover),
-          ),
-        ),
-        GestureDetector(
-          onTap: () {
-            Navigator.pushNamed(context, '/jalwa');
-          },
-          child: channelBox(
-            Image.asset('assets/jalwa.jpg', fit: BoxFit.cover),
-          ),
-        ),
-      ],
-    );
-  }
-}
-class MoviesChannels extends StatelessWidget {
-  Card channelBox(
-      Image image,
-      ) {
-    return Card(
-      clipBehavior: Clip.antiAlias, //very important
-      shape: RoundedRectangleBorder(
-        borderRadius: BorderRadius.circular(60.0),
+    return Padding(
+      padding: const EdgeInsets.symmetric(horizontal: 8),
+      child: Row(
+        children: [
+          _ChannelItem(assetPath: 'assets/8xm.jpg', label: '8XM', route: '/8xm'),
+          _ChannelItem(assetPath: 'assets/jalwa.jpg', label: 'Jalwa', route: '/jalwa'),
+        ],
       ),
-      child: Container(
-        width: 75,
-        child: image,
-      ),
-    );
-  }
-
-  @override
-  Widget build(BuildContext context) {
-    return Row(
-      mainAxisAlignment: MainAxisAlignment.start,
-      children: [
-        GestureDetector(
-          onTap: () {
-            Navigator.pushNamed(context, '/filmax');
-          },
-          child: channelBox(
-            Image.asset('assets/filmax.jpg', fit: BoxFit.cover),
-          ),
-        ),
-        GestureDetector(
-          onTap: () {
-            Navigator.pushNamed(context, '/filmworld');
-          },
-          child: channelBox(
-            Image.asset('assets/filmworld.jpg', fit: BoxFit.cover),
-          ),
-        ),
-        GestureDetector(
-          onTap: () {
-            Navigator.pushNamed(context, '/movieone');
-          },
-          child: channelBox(
-            Image.asset('assets/movieone.jpg', fit: BoxFit.cover),
-          ),
-        ),
-      ],
     );
   }
 }
